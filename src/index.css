@@ -1,0 +1,48 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  /* --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem; */
+
+  --breakpoint-xs: 475px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1500px;
+  /* --breakpoint-3xl: 1500px; */
+}
+
+body {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Cally 캘린더 휴일 스타일 */
+.holiday {
+  color: #dc2626 !important;
+  font-weight: bold !important;
+  background-color: #fef2f2 !important;
+  border-radius: 4px !important;
+}
+
+/* 캘린더 버튼 스타일 강제 적용 */
+calendar-date button[data-holiday] {
+  color: #dc2626 !important;
+  font-weight: bold !important;
+  background-color: #fef2f2 !important;
+  border-radius: 4px !important;
+}
+
+/* 모든 캘린더 버튼에 대한 기본 스타일 */
+calendar-date button {
+  transition: all 0.2s ease;
+}
+
+calendar-date button:hover {
+  background-color: #f3f4f6 !important;
+}
