@@ -6,7 +6,8 @@ import Regist from "../pages/member/Regist";
 import Phone from "../pages/member/Phone";
 import ProductLayout from "../layouts/ProductLayout";
 import productRouters from "./productRouters";
-
+import pointRouters from "./pointRouters";
+import PointLayout from "../layouts/PointLayout";
 const root = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +24,11 @@ const root = createBrowserRouter([
     path: "/product",
     element: <ProductLayout />,
     children: productRouters,
+  },
+  {
+    path: "/point",
+    element: <PointLayout />,
+    children: pointRouters,
   },
   {
     path: "/login",

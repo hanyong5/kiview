@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import supabase from "../utils/supabase";
 import CartComp from "../components/CartComp";
 import ModalComp from "../components/ModalComp";
+import { cartState } from "../recoil/cartState";
 
 function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [cart, setCart] = useRecoilState(cartState);
 
   useEffect(() => {
     fetchProducts();
@@ -37,45 +39,18 @@ function Home() {
     });
   };
 
-  // 카트 수량 조절
-  const changeQty = (id, diff) => {
-    setCart((prev) =>
-      prev
-        .map((item) =>
-          item.id === id ? { ...item, qty: Math.max(1, item.qty + diff) } : item
-        )
-        .filter((item) => item.qty > 0)
-    );
-  };
-
-  // 카트에서 상품 삭제
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  // 카트 합계
-  const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-  const totalPrice = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
-
   // 결제 모달 열기/닫기
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
-  // 결제 완료 처리(예시)
-  const handlePayment = () => {
-    alert("결제가 완료되었습니다!");
-    setCart([]);
-    closeModal();
-  };
-
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className=" bg-gray-50 flex pb-20 relative h-screen">
       {/* 상품 리스트 */}
-      <div className="flex-1 p-4 grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="flex-1 p-4 flex  gap-3 items-start">
         {loading ? (
           <div className="col-span-full text-center text-lg">로딩 중...</div>
         ) : products.length === 0 ? (
-          <div className="col-span-full text-center text-gray-500">
+          <div className="col-span-full text-center text-gray-500 ">
             등록된 상품이 없습니다.
           </div>
         ) : (
@@ -114,23 +89,10 @@ function Home() {
       </div>
 
       {/* 카트 영역 - CartComp로 분리 */}
-      <CartComp
-        cart={cart}
-        changeQty={changeQty}
-        removeFromCart={removeFromCart}
-        totalQty={totalQty}
-        totalPrice={totalPrice}
-        openModal={openModal}
-      />
+      <CartComp openModal={openModal} />
 
       {/* 결제 모달 - ModalComp로 분리 */}
-      <ModalComp
-        show={showModal}
-        totalQty={totalQty}
-        totalPrice={totalPrice}
-        onClose={closeModal}
-        onPayment={handlePayment}
-      />
+      <ModalComp show={showModal} onClose={closeModal} />
     </div>
   );
 }

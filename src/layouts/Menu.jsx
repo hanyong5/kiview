@@ -16,6 +16,9 @@ function Menu() {
             <Link to="/product/list">products</Link>
           </li> */}
           <li>
+            <Link to="/point/list">point</Link>
+          </li>
+          <li>
             <Link to="/login">login</Link>
           </li>
           <li>

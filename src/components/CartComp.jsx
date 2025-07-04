@@ -1,15 +1,34 @@
 import React from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  cartState,
+  cartTotalQtySelector,
+  cartTotalPriceSelector,
+} from "../recoil/cartState";
 
-function CartComp({
-  cart,
-  changeQty,
-  removeFromCart,
-  totalQty,
-  totalPrice,
-  openModal,
-}) {
+function CartComp({ openModal }) {
+  const [cart, setCart] = useRecoilState(cartState);
+  const totalQty = useRecoilValue(cartTotalQtySelector);
+  const totalPrice = useRecoilValue(cartTotalPriceSelector);
+
+  // 카트 수량 조절
+  const changeQty = (id, diff) => {
+    setCart((prev) =>
+      prev
+        .map((item) =>
+          item.id === id ? { ...item, qty: Math.max(1, item.qty + diff) } : item
+        )
+        .filter((item) => item.qty > 0)
+    );
+  };
+
+  // 카트에서 상품 삭제
+  const removeFromCart = (id) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
+
   return (
-    <div className="bg-white border-t p-4 flex flex-col md:flex-row items-center gap-4 sticky bottom-0 z-10">
+    <div className="bg-white border-t p-4 flex flex-col md:flex-row items-center gap-4 fixed w-full left-0 bottom-0 z-10">
       {cart.length === 0 ? (
         <div className="text-gray-400 flex-1">카트에 담긴 상품이 없습니다.</div>
       ) : (
