@@ -12,9 +12,9 @@ function Menu() {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/product/list">products</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/login">login</Link>
           </li>
