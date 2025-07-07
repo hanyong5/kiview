@@ -17,12 +17,12 @@ function Menu() {
     <>
       <div className="flex justify-between items-center p-4 bg-gray-200">
         <h1>
-          <Link to="/">KIOSK 관리자</Link>
+          <Link to="/">우리카페</Link>
         </h1>
         <ul className="flex gap-4">
           <li>
             <Link to="/" className="hover:text-blue-600">
-              Home
+              주문하기
             </Link>
           </li>
 
@@ -65,7 +65,7 @@ function Menu() {
             </>
           ) : (
             <>
-              <li>
+              {/* <li>
                 <Link to="/login" className="hover:text-blue-600">
                   로그인
                 </Link>
@@ -74,10 +74,10 @@ function Menu() {
                 <Link to="/regist" className="hover:text-blue-600">
                   회원가입
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/phone" className="hover:text-blue-600">
-                  전화번호
+                  회원가입
                 </Link>
               </li>
             </>
