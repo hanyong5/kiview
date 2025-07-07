@@ -77,7 +77,7 @@ function CartComp({ openModal }) {
               <b className="text-2xl">{totalPrice.toLocaleString()}원</b>
             </div>
             <button
-              className="bg-red-500 hover:bg-red-600 text-white px-8 py-2 rounded text-lg mt-1"
+              className="bg-red-500 hover:bg-red-600 text-white px-8 py-2 rounded text-3xl text-bold mt-1"
               onClick={openModal}
             >
               제품주문

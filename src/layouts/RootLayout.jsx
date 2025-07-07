@@ -6,7 +6,7 @@ function RootLayout() {
   return (
     <>
       <Menu />
-      <div className="container mx-auto">
+      <div className=" mx-auto">
         <Outlet />
       </div>
     </>
