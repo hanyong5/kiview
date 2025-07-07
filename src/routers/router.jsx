@@ -8,6 +8,10 @@ import ProductLayout from "../layouts/ProductLayout";
 import productRouters from "./productRouters";
 import pointRouters from "./pointRouters";
 import PointLayout from "../layouts/PointLayout";
+import OrderList from "../pages/orders/OrderList";
+import OrderQueue from "../pages/orders/OrderQueue";
+import ProtectedRoute from "../components/ProtectedRoute";
+
 const root = createBrowserRouter([
   {
     path: "/",
@@ -27,8 +31,28 @@ const root = createBrowserRouter([
   },
   {
     path: "/point",
-    element: <PointLayout />,
+    element: (
+      <ProtectedRoute>
+        <PointLayout />
+      </ProtectedRoute>
+    ),
     children: pointRouters,
+  },
+  {
+    path: "/orders",
+    element: (
+      <ProtectedRoute>
+        <OrderList />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/queue",
+    element: (
+      <ProtectedRoute>
+        <OrderQueue />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/login",

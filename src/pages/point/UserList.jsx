@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import supabase from "../../utils/supabase";
+import { formatKST } from "../../utils/dateUtils";
 
 function UserList() {
   const [list, setList] = useState([]);
@@ -70,7 +71,7 @@ function UserList() {
                     {row.balance.toLocaleString()}원
                   </td>
                   <td className="py-2 px-2 text-gray-500">
-                    {new Date(row.updated_at).toLocaleString("ko-KR")}
+                    {formatKST(row.updated_at, "datetime")}
                   </td>
                 </tr>
               ))}

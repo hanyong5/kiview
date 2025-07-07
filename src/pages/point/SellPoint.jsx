@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import supabase from "../../utils/supabase";
+import { formatKST } from "../../utils/dateUtils";
 
 function SellPoint() {
   const [salesList, setSalesList] = useState([]);
@@ -121,7 +122,7 @@ function SellPoint() {
   const memberStats = calculateStats(memberSales);
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleString("ko-KR");
+    return formatKST(dateString, "datetime");
   };
 
   const formatPrice = (price) => {
